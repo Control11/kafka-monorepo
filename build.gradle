@@ -1,0 +1,12 @@
+plugins {
+    id 'base'
+}
+
+subprojects {
+    apply plugin: 'java'
+
+    repositories {
+        mavenCentral()
+    }
+
+}
