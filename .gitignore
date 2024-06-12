@@ -31,3 +31,6 @@ consumer/build/
 # OS-specific files
 .DS_Store
 Thumbs.db
+
+#secrets
+consumer/secrets/

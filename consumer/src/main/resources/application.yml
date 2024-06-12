@@ -1,0 +1,12 @@
+spring:
+  kafka:
+    bootstrap-servers: kafka:9092
+    group-id: group_id
+    auto-offset-reset: earliest
+
+twilio:
+  accountSid: ${TWILIO_ACCOUNT_SID}
+  authToken: ${TWILIO_AUTH_TOKEN}
+  numberFrom: ${TWILIO_NUMBER_FROM}
+  numberTo: ${TWILIO_NUMBER_TO}
+

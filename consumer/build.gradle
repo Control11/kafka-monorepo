@@ -5,6 +5,11 @@ plugins {
 dependencies {
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
     implementation 'org.jetbrains.kotlin:kotlin-reflect'
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
+    implementation 'com.twilio.sdk:twilio:10.2.1'
+    implementation 'com.sendgrid:sendgrid-java:4.10.2'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 bootJar {
