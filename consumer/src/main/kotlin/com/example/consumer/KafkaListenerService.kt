@@ -23,7 +23,4 @@ class KafkaListenerService (
         smsSenderService.sendSmsNotification(accountSid, authToken, numberFrom, numberTo, message)
     }
 
-
-
-
 }
