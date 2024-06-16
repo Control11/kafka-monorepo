@@ -29,3 +29,5 @@ services:
     depends_on:
       - kafka
     env_file: ./consumer/secrets/secrets.env
+    ports:
+      - "8081:8081"
