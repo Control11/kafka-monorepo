@@ -9,30 +9,31 @@ on:
 
 jobs:
   build-and-push:
-    runs-on: ubuntu-20.04.06
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: Set up JDK 21
-      uses: actions/setup-java@v2
+      uses: actions/setup-java@v4
       with:
         distribution: 'temurin'
         java-version: '21'
 
-    - name: Set up JDK 17
-      uses: actions/setup-java@v2
-      with:
-        distribution: 'temurin'
-        java-version: '17'
 
-    - name: Build Applications
+    - name: Build Producer Application
       run: |
+        cd producer
+        chmod +x gradlew
         ./gradlew clean build
+        
 
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v1
+    - name: Build Consumer Application
+      run: |
+        cd consumer
+        chmod +x gradlew
+        ./gradlew clean build
 
     - name: Log in to Docker Hub
       uses: docker/login-action@v1
