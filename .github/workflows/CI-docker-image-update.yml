@@ -1,6 +1,5 @@
 name: Build, Test, and Push Docker Images
 
-
 on:
   push:
     branches: [ "master" ]
@@ -8,11 +7,12 @@ on:
     branches: [ "master" ]
 
 jobs:
-  build-and-push:
+  build-and-publish:
+
     runs-on: ubuntu-20.04
+
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+    - uses: actions/checkout@v4
 
     - name: Set up JDK 21
       uses: actions/setup-java@v4
@@ -29,14 +29,14 @@ jobs:
         username: ${{ secrets.DOCKER_HUB_USERNAME }}
         password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
-    - name: Build and push producer image
+    - name: Build and push Producer image
       uses: docker/build-push-action@v6
       with:
         context: ./producer
         push: true
         tags: ${{ secrets.DOCKER_HUB_USERNAME }}/kafka-monorepo-producer:latest
 
-    - name: Build and push consumer image
+    - name: Build and push Consumer image
       uses: docker/build-push-action@v6
       with:
         context: ./consumer
