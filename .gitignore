@@ -35,4 +35,4 @@ Thumbs.db
 
 #secrets
 consumer/secrets/
-k8s/secrets/
+secrets/

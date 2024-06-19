@@ -15,11 +15,15 @@ spec:
       containers:
         - name: kafka-monorepo-consumer
           image: control11/kafka-monorepo-consumer:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 8081
           env:
             - name: KAFKA_BOOTSTRAP_SERVERS
-              value: kafka:9092
+              valueFrom:
+                configMapKeyRef:
+                  name: kafka-config
+                  key: KAFKA_BOOTSTRAP_SERVERS
             - name: TWILIO_ACCOUNT_SID
               valueFrom:
                 secretKeyRef:

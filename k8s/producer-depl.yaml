@@ -15,11 +15,15 @@ spec:
       containers:
         - name: kafka-monorepo-producer
           image: control11/kafka-monorepo-producer:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
           env:
             - name: KAFKA_BOOTSTRAP_SERVERS
-              value: kafka:9092
+              valueFrom:
+                configMapKeyRef:
+                  name: kafka-config
+                  key: KAFKA_BOOTSTRAP_SERVERS
 ---
 apiVersion: v1
 kind: Service
