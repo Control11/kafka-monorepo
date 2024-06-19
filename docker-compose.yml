@@ -20,6 +20,8 @@ services:
       context: ./producer
     depends_on:
       - kafka
+    environment:
+      KAFKA_BOOTSTRAP_SERVERS: kafka:9092
     ports:
       - "8080:8080"
 
@@ -29,5 +31,7 @@ services:
     depends_on:
       - kafka
     env_file: ./consumer/secrets/secrets.env
+    environment:
+      KAFKA_BOOTSTRAP_SERVERS: kafka:9092
     ports:
       - "8081:8081"
