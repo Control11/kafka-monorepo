@@ -1,3 +1,10 @@
 spring:
   kafka:
     bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS}
+    properties:
+      security:
+        protocol: PLAINTEXT
+      sasl:
+        mechanism: GSSAPI
+        jaas:
+          config: org.apache.kafka.common.security.plain.PlainLoginModule required username="" password="";
