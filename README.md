@@ -25,6 +25,13 @@ Welcome to the Kafka Monorepo, a versatile repository designed to facilitate the
 - Access to a Docker registry (for pushing Docker images)
 - Account at Twilio that provides sending and receiving SMS messages (https://www.twilio.com/en-us)
 
+### Preparation
+Since it is not out of the box project, you need to do some preparation of template files.
+1. First you need to fill consumer-secret.yaml with appropriate data from Twilio account.
+2. Then you need to check your network ip (ex. ```ipconfig``` command on Windows / ```ifconfig``` on Linux) and put that IP to kafka-config-map.yaml and kafka-docker-compose.yml (in KAFKA_ADVERTISED_LISTENERS parameter instead of NETWORK_IP). It is necessary because of locally hosted Kubernetes cluster needs to communicate with locally hosted docker compose containers.
+
+
+
 ### Running with Docker Compose
 
 1. **Full Setup:**
@@ -37,6 +44,14 @@ Welcome to the Kafka Monorepo, a versatile repository designed to facilitate the
    For environments where client applications are managed separately:
    ```bash
    docker-compose -f kafka-docker-compose.yml up -d
+   ```  
+   
+   After that run producer and consumer in Kubernetes cluster:
+    ```bash
+   kubectl apply -f k8s/consumer-secret.yaml
+   kubectl apply -f k8s/kafka-config-map.yaml
+   kubectl apply -f k8s/consumer-depl.yaml
+   kubectl apply -f k8s/producer-depl.yaml
    ```
 
 ### Accessing Kafka UI
